@@ -2,6 +2,7 @@ package cn.iocoder.springcloud.labx11.kafkademo.kafkademo.controller;
 
 import cn.iocoder.springcloud.labx11.kafkademo.kafkademo.message.Demo01Message;
 import cn.iocoder.springcloud.labx11.kafkademo.kafkademo.message.MySource;
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class Demo01Controller {
     public boolean sendBatch() {
         for (int i = 0; i < 3; i++) {
             // 创建 Message
-            int id = new Random().nextInt();
+            int id = new SecureRandom().nextInt();
             Demo01Message message = new Demo01Message()
                     .setId(id);
             // 创建 Spring Message 对象
