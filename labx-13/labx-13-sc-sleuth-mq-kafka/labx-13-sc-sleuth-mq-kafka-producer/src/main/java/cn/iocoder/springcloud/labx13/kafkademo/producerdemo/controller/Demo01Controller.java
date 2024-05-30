@@ -2,6 +2,7 @@ package cn.iocoder.springcloud.labx13.kafkademo.producerdemo.controller;
 
 import cn.iocoder.springcloud.labx13.kafkademo.producerdemo.message.Demo01Message;
 import cn.iocoder.springcloud.labx13.kafkademo.producerdemo.message.MySource;
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class Demo01Controller {
     public boolean send() {
         // 创建 Message
         Demo01Message message = new Demo01Message()
-                .setId(new Random().nextInt());
+                .setId(new SecureRandom().nextInt());
         // 创建 Spring Message 对象
         Message<Demo01Message> springMessage = MessageBuilder.withPayload(message)
                 .build();
