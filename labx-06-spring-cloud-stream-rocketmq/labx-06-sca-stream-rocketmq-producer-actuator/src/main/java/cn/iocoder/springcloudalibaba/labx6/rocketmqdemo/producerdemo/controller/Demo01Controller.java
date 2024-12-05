@@ -2,6 +2,7 @@ package cn.iocoder.springcloudalibaba.labx6.rocketmqdemo.producerdemo.controller
 
 import cn.iocoder.springcloudalibaba.labx6.rocketmqdemo.producerdemo.message.Demo01Message;
 import cn.iocoder.springcloudalibaba.labx6.rocketmqdemo.producerdemo.message.MySource;
+import java.security.SecureRandom;
 import org.apache.rocketmq.common.message.MessageConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ public class Demo01Controller {
     public boolean send() {
         // 创建 Message
         Demo01Message message = new Demo01Message()
-                .setId(new Random().nextInt());
+                .setId(new SecureRandom().nextInt());
         // 创建 Spring Message 对象
         Message<Demo01Message> springMessage = MessageBuilder.withPayload(message)
                 .build();
@@ -39,7 +40,7 @@ public class Demo01Controller {
     public boolean sendDelay() {
         // 创建 Message
         Demo01Message message = new Demo01Message()
-                .setId(new Random().nextInt());
+                .setId(new SecureRandom().nextInt());
         // 创建 Spring Message 对象
         Message<Demo01Message> springMessage = MessageBuilder.withPayload(message)
                 .setHeader(MessageConst.PROPERTY_DELAY_TIME_LEVEL, "3") // 设置延迟级别为 3，10 秒后消费。
@@ -55,7 +56,7 @@ public class Demo01Controller {
         for (String tag : new String[]{"yunai", "yutou", "tudou"}) {
             // 创建 Message
             Demo01Message message = new Demo01Message()
-                    .setId(new Random().nextInt());
+                    .setId(new SecureRandom().nextInt());
             // 创建 Spring Message 对象
             Message<Demo01Message> springMessage = MessageBuilder.withPayload(message)
                     .setHeader(MessageConst.PROPERTY_TAGS, tag) // 设置 Tag
